@@ -2,7 +2,6 @@ import Head from 'next/head';
 import * as React from 'react';
 
 import * as config from '@/lib/config';
-import { getSocialImageUrl } from '@/lib/get-social-image-url';
 import * as types from '@/lib/types';
 
 export const PageHead: React.FC<
@@ -18,7 +17,7 @@ export const PageHead: React.FC<
   title = title ?? site?.name;
   description = description ?? site?.description;
 
-  const socialImageUrl = getSocialImageUrl(pageId) || image;
+  const socialImageUrl = image;
 
   return (
     <Head>

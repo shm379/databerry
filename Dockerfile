@@ -76,12 +76,12 @@ COPY --from=builder --chown=nextjs:nodejs /app/apps/${SCOPE}/.next/static ./apps
 COPY --from=builder --chown=nextjs:nodejs /app/apps/${SCOPE}/.next/server ./apps/${SCOPE}/.next/server
 
 # # Prisma
-# COPY ./packages/prisma ./packages/prisma
-# COPY --from=builder /app/node_modules/.pnpm/@prisma+client@5.3.1_prisma@5.3.1/node_modules/@prisma/client ./node_modules/@prisma/client
-# COPY --from=builder /app/node_modules/.pnpm/@prisma+engines@5.3.1/node_modules/@prisma/engines ./node_modules/@prisma/engines
-# COPY --from=builder /app/node_modules/.pnpm/prisma@5.3.1/node_modules/prisma ./node_modules/prisma
-# COPY --from=builder /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
-# RUN ./node_modules/.bin/prisma generate --schema=packages/prisma/schema.prisma;
+COPY ./packages/prisma ./packages/prisma
+COPY --from=builder /app/node_modules/.pnpm/@prisma+client@5.3.1_prisma@5.3.1/node_modules/@prisma/client ./node_modules/@prisma/client
+COPY --from=builder /app/node_modules/.pnpm/@prisma+engines@5.3.1/node_modules/@prisma/engines ./node_modules/@prisma/engines
+COPY --from=builder /app/node_modules/.pnpm/prisma@5.3.1/node_modules/prisma ./node_modules/prisma
+COPY --from=builder /app/node_modules/.bin/prisma ./node_modules/.bin/prisma
+RUN ./node_modules/.bin/prisma generate --schema=packages/prisma/schema.prisma;
 
 USER nextjs
 
